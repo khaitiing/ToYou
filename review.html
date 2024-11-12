@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="assignment.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <title>Customer Reviews</title>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="home.html">
+                    <img src="images/logo.png" alt="Logo">
+                </a>
+            </div>
+
+            <ul class="links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="review.html">Reviews</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="product.html" class="cart"><img src="images/shoppingbag.png"></a>
+                <a href="signin.html" class="loginsignup"><img src="images/user.png"></a>
+                <div class="searchContainer">
+                    <div class="searchIcon">
+                        <img src="images/search.png" class="search">
+                    </div>
+                    <div class="searchInput">
+                        <input type="text" placeholder="Search" id="search">
+                    </div>
+                </div>
+            </div>
+
+            <div class="toggle_btn">
+                <img src="images/menu.png">
+            </div>
+            
+        </div>
+
+        <div class="dropdown_menu">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="review.html">Reviews</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </div>
+    </header>
+
+    <!-- Review Page Content -->
+    <div class="reviewInfo">
+        <div class="reviewContainer">
+            <div class="reviewContainerleft">
+                <h1>Customers Review</h1>
+                <p>
+                    Since 2023 but we have sold out more than
+                    thousands of tote bags over the year!  
+                </p>
+                <p>
+                    Not too late to check on the reviews 
+                    and make a decision!
+                </p>
+                <p>
+                <button class="reviewButton"><a href="product.html">Check out our tote bags</a></button>
+                </p>
+            </div>
+
+            <div class="reviewContainerright">
+                <div class="reviewCard">
+                    <img src="images/ppl2.jpg" alt="user">
+                    <div class="reviewCardcontent">
+                        <span><img src="images/quote.png"></span>
+                        <div class="reviewCarddetails">
+                            <p>Thought the quality would be normal. Apparently it is not that bad!
+                                Very cute designs
+                            </p>
+                            <h4>- Fitz Ashlea</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reviewCard">
+                    <img src="images/ppl1.jpg" alt="user">
+                    <div class="reviewCardcontent">
+                        <span><img src="images/quote.png"></span>
+                        <div class="reviewCarddetails">
+                            <p>Gave it to my girlfriend as a gift. She likes it so much
+                                that she is using it everyday.
+                            </p>
+                            <h4>- Donovan Reene</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reviewCard">
+                    <img src="images/ppl3.jpg" alt="user">
+                    <div class="reviewCardcontent">
+                        <span><img src="images/quote.png"></span>
+                        <div class="reviewCarddetails">
+                            <p>A very nice gift to our special ones with the 
+                                classey design as it says 'to you'
+                            </p>
+                            <h4>- Tanya Margo</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footerRow">
+            <div class="footerCol">
+                <img src="images/logo.png" class="logo" alt="logo">
+                <p class="footerPara">Designed meant to be for you and to you. Since 2023</p>
+            </div>
+            <div class="footerCol">
+                <h3>Office<div class="footerUnderline"><span></span></div></h3>
+                <p>5, Jalan Universiti,</p>
+                <p>Bandar Sunway, 47500</p>
+                <p>Petaling Jaya, Selangor</p>
+                <p class="footerEmail">23001597@imail.sunway.edu.my</p>
+                <h4>03-77123456</h4>
+            </div>
+            <div class="footerCol">
+                <h3>Links<div class="footerUnderline"><span></span></div></h3>
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Products</a></li>
+                    <li><a href="">Reviews</a></li>
+                    <li><a href="">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footerCol">
+                <h3>Newsletter<div class="footerUnderline"><span></span></div></h3>
+                <form class="footerForm">
+                    <img src="images/email.png" class="footerEmail">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="footerArrow"><img src="images/arrowright.png"></button>
+                </form>
+                <div class="footersocialIcon">
+                    <a href="https://shopee.com.my/" class="shopeelogo"><img src="images/shopee.png"></a>
+                    <a href="https://www.instagram.com/" class="iglogo"><img src="images/instagram.png"></a>
+                    <a href="https://www.facebook.com/" class="fblogo"><img src="images/facebook.png"></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p class="footercopyright">ToYou &copy; 2023 - All Rights Reserved</p>
+        <p class="creationDate">Created On: 5th December 2023</p>
+        <p class="updateDate">Last Updated On: 10th December 2023</p>
+        <p class="datacollectionDate">Data Collection Date: 5th December 2023</p>
+    </footer>
+    
+    <!-- Javascript Codes -->
+    <script>
+        // JAVASCRIPT CODE FOR NAVIGATION BAR
+        const toggleBtn = document.querySelector('.toggle_btn');
+        const toggleBtnIcon = document.querySelector('.toggle_btn img');
+        const dropDownMenu = document.querySelector('.dropdown_menu');
+
+        function toggleMenu() {
+            dropDownMenu.classList.toggle('open');
+            const isOpen = dropDownMenu.classList.contains('open');
+            
+            //Change the icon when dropdown menu is opened
+            toggleBtnIcon.src = isOpen ? 'images/x.png' : 'images/menu.png';
+        }
+
+        toggleBtn.onclick = toggleMenu;
+
+        //Check window width on page load and resize
+        function checkWindowSize() {
+            if (window.innerWidth <= 992) { 
+                toggleBtn.style.display = 'block';
+            } else {
+                toggleBtn.style.display = 'none';
+                dropDownMenu.classList.remove('open'); 
+            }
+        }
+
+        //Initial check on page load
+        checkWindowSize();
+
+        //Listen for window resize events
+        window.addEventListener('resize', checkWindowSize);
+
+        //JAVASCRIPT FOR SEARCH
+        let search = document.querySelector(".search");
+
+        search.onclick = function(){
+            document.querySelector(".searchContainer").classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

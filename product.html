@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="assignment.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <title>Products</title>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="home.html">
+                    <img src="images/logo.png" alt="Logo">
+                </a>
+            </div>
+
+            <ul class="links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="review.html">Reviews</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <div class="iconCart">
+                    <a href="#" class="cart"><img src="images/shoppingbag.png"></a>
+                    <span id="cartQuantity" class="quantity">0</span>
+                    </a>
+                </div>
+                <a href="signin.html" class="loginsignup"><img src="images/user.png"></a>
+                <div class="searchContainer">
+                    <div class="searchIcon">
+                        <img src="images/search.png" class="search">
+                    </div>
+                    <div class="searchInput">
+                        <input type="text" placeholder="Search" id="search">
+                    </div>
+                </div>
+            </div>
+
+            <div class="toggle_btn">
+                <img src="images/menu.png">
+            </div>
+        </div>
+
+        <div class="dropdown_menu">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="review.html">Reviews</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </div>
+    </header>
+
+    <!-- Product & Cart Content -->
+    <div class="showCart">
+        <div class="productContainer">
+            <div class="productTitle">OUR PRODUCTS</div>
+            <div class="listProduct" id="listProduct"></div>
+        </div>
+
+        <div class="cartTab">
+            <h1>Cart</h1>
+            <div class="listCart" id="listCart"></div>
+
+            <div class="cartButton">
+                <button class="cartClose" onclick="closeCart()">CLOSE</button>
+                <button class="cartCheckOut" onclick="checkout()">CHECK OUT</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footerRow">
+            <div class="footerCol">
+                <img src="images/logo.png" class="logo" alt="logo">
+                <p class="footerPara">Designed meant to be for you and to you. Since 2023</p>
+            </div>
+            <div class="footerCol">
+                <h3>Office<div class="footerUnderline"><span></span></div></h3>
+                <p>5, Jalan Universiti,</p>
+                <p>Bandar Sunway, 47500</p>
+                <p>Petaling Jaya, Selangor</p>
+                <p class="footerEmail">23001597@imail.sunway.edu.my</p>
+                <h4>03-77123456</h4>
+            </div>
+            <div class="footerCol">
+                <h3>Links<div class="footerUnderline"><span></span></div></h3>
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Products</a></li>
+                    <li><a href="">Reviews</a></li>
+                    <li><a href="">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footerCol">
+                <h3>Newsletter<div class="footerUnderline"><span></span></div></h3>
+                <form class="footerForm">
+                    <img src="images/email.png" class="footerEmail">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="footerArrow"><img src="images/arrowright.png"></button>
+                </form>
+                <div class="footersocialIcon">
+                    <a href="https://shopee.com.my/" class="shopeelogo"><img src="images/shopee.png"></a>
+                    <a href="https://www.instagram.com/" class="iglogo"><img src="images/instagram.png"></a>
+                    <a href="https://www.facebook.com/" class="fblogo"><img src="images/facebook.png"></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p class="footercopyright">ToYou &copy; 2023 - All Rights Reserved</p>
+        <p class="creationDate">Created On: 5th December 2023</p>
+        <p class="updateDate">Last Updated On: 10th December 2023</p>
+        <p class="datacollectionDate">Data Collection Date: 5th December 2023</p>
+    </footer>
+
+    <!-- Javascript Codes -->
+    <script>
+         // JAVASCRIPT CODE FOR NAVIGATION BAR
+         const toggleBtn = document.querySelector('.toggle_btn');
+        const toggleBtnIcon = document.querySelector('.toggle_btn img');
+        const dropDownMenu = document.querySelector('.dropdown_menu');
+
+        function toggleMenu() {
+            dropDownMenu.classList.toggle('open');
+            const isOpen = dropDownMenu.classList.contains('open');
+            
+            //Change the icon when dropdown menu is opened
+            toggleBtnIcon.src = isOpen ? 'images/x.png' : 'images/menu.png';
+        }
+
+        toggleBtn.onclick = toggleMenu;
+
+        //Check window width on page load and resize
+        function checkWindowSize() {
+            if (window.innerWidth <= 992) { 
+                toggleBtn.style.display = 'block';
+            } else {
+                toggleBtn.style.display = 'none';
+                dropDownMenu.classList.remove('open'); 
+            }
+        }
+
+        //Initial check on page load
+        checkWindowSize();
+
+        //Listen for window resize events
+        window.addEventListener('resize', checkWindowSize);
+
+        //JAVASCRIPT FOR SEARCH
+        let search = document.querySelector(".search");
+
+        search.onclick = function(){
+            document.querySelector(".searchContainer").classList.toggle('active');
+        }
+
+        //JAVASCRIPT PRODUCT TO CART
+        let iconCart = document.querySelector(".iconCart");
+        let body = document.querySelector(".showCart");
+        let listCart = document.getElementById("listCart");
+        let listProduct = document.getElementById("listProduct");
+        let cartQuantityElement = document.getElementById("cartQuantity");
+        let cartQuantity = 0;
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        iconCart.addEventListener('click', () =>{
+            body.classList.toggle('showCart')
+        })
+
+        function closeCart(){
+            body.classList.toggle('showCart');
+        }
+
+        function checkout() {
+            window.location.href = 'checkout.html';
+        }   
+
+        //CODE TO SHOW IMAGE ON PRODUCT CONTENT
+        let products = [
+            {
+            "id": 1,
+            "name": "Cute Rabbit",
+            "price": 10,
+            "image": "images/beigetote1.png"
+            },
+            {
+            "id": 2,
+            "name": "Cold Penguin",
+            "price": 15,
+            "image": "images/beigetote2.png"
+            },
+            {
+            "id": 3,
+            "name": "Skinny Baymax",
+            "price": 10,
+            "image": "images/beigetote3.png"
+            },
+            {
+            "id": 4,
+            "name": "Fly High",
+            "price": 20,
+            "image": "images/beigetote4.png"
+            },
+            {
+            "id": 5,
+            "name": "The Car",
+            "price": 10,
+            "image": "images/blacktote1.png"
+            },
+            {
+            "id": 6,
+            "name": "The Universe",
+            "price": 25,
+            "image": "images/blacktote2.png"
+            },
+            {
+            "id": 7,
+            "name": "The Crown",
+            "price": 10,
+            "image": "images/blacktote3.png"
+            },
+            {
+            "id": 8,
+            "name": "The Sunrise",
+            "price": 15,
+            "image": "images/blacktote4.png"
+            },
+            {
+            "id": 9,
+            "name": "Prrr Prrr",
+            "price": 20,
+            "image": "images/beigetote5.png"
+            },
+            {
+            "id": 10,
+            "name": "Hi Hi",
+            "price": 18,
+            "image": "images/beigetote6.png"
+            },
+            {
+            "id": 11,
+            "name": "Cool Cool",
+            "price": 15,
+            "image": "images/beigetote7.png"
+            },
+            {
+            "id": 12,
+            "name": "Mrrp Mrrp",
+            "price": 18,
+            "image": "images/beigetote8.png"
+            },
+            {
+            "id": 13,
+            "name": "Whaley",
+            "price": 25,
+            "image": "images/blacktote5.png"
+            },
+            {
+            "id": 14,
+            "name": "Housey",
+            "price": 15,
+            "image": "images/blacktote6.png"
+            },
+            {
+            "id": 15,
+            "name": "Classey",
+            "price": 20,
+            "image": "images/blacktote7.png"
+            },
+            {
+            "id": 16,
+            "name": "Sleepy",
+            "price": 15,
+            "image": "images/blacktote8.png"
+            }
+        ]
+
+        //JAVASCRIPT FOR ADD TO CART FUNCTION
+        function initApp() {
+            products.forEach((value) => {
+                let newDiv = document.createElement('div');
+                newDiv.innerHTML = `
+                    <div class="productItem">
+                        <div class="productImage">
+                            <img src="${value.image}" alt="${value.name}">
+                        </div>
+                        <h2>${value.name}</h2>
+                        <div class="productPrice">RM${value.price}</div>
+                        <button onclick="addToCart('${value.name}', 'RM${value.price}', '${value.image}')">
+                            Add to Cart
+                        </button>
+                    </div>
+                `;
+                listProduct.appendChild(newDiv);
+            });
+
+            displayCartItems();
+        }
+
+        //JAVASCRIPT FOR PRODUCTS ADDED TO CART
+        function addToCart(productName, productPrice, productImage) {
+            let cartItem = document.createElement('div');
+            cartItem.classList.add('productItem');
+            cartItem.innerHTML = `
+                <div class="productImage">
+                    <img src="${productImage}" alt="${productName}">
+                </div>
+                <div class="productName">${productName}</div>
+                <div class="totalPrice">${productPrice}</div>
+                <div class="productQuantity">
+                    <span class="minus" onclick="updateQuantity(this, -1)">-</span>
+                    <span>1</span>
+                    <span class="plus" onclick="updateQuantity(this, 1)">+</span>
+                </div>
+            `;
+            listCart.appendChild(cartItem);
+
+            // Update cart quantity
+            cartQuantity++;
+            cartQuantityElement.textContent = cartQuantity;
+
+            // Save updated cart items to localStorage
+            cartItems.push({ name: productName, price: productPrice, image: productImage });
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+
+        //JAVASCRIPT FOR DISPLAYING CART ITEMS
+        function displayCartItems() {
+            cartItems.forEach((item) => {
+                let cartItem = document.createElement('div');
+                cartItem.classList.add('productItem');
+                cartItem.innerHTML = `
+                    <div class="productImage">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="productName">${item.name}</div>
+                    <div class="totalPrice">${item.price}</div>
+                    <div class="productQuantity">
+                        <span class="minus" onclick="updateQuantity(this, -1)">-</span>
+                        <span>1</span>
+                        <span class="plus" onclick="updateQuantity(this, 1)">+</span>
+                    </div>
+                `;
+                listCart.appendChild(cartItem);
+            });
+        }
+    
+        //JAVASCRIPT FOR UPDATE QUANTITY IN CART FUNCTION
+        function updateQuantity(element, change) {
+            //Find the parent element of the clicked button (productQuantity div)
+            let productQuantityDiv = element.parentElement;
+
+            //Find the span that displays the quantity
+            let quantitySpan = productQuantityDiv.querySelector('span:nth-child(2)');
+
+            //Update the quantity
+            let newQuantity = parseInt(quantitySpan.textContent) + change;
+
+            //Ensure the quantity doesn't go below 1
+            newQuantity = Math.max(0, newQuantity);
+
+            //Update the displayed quantity
+            quantitySpan.textContent = newQuantity;
+
+            //If the new quantity is 0, remove the item from the cart
+            if (newQuantity === 0) {
+                let cartItem = productQuantityDiv.parentElement;
+                cartItem.remove();
+
+                //Update cart quantity
+                cartQuantity--;
+                cartQuantityElement.textContent = cartQuantity;
+
+                //Remove the item from the cartItems array
+                let itemName = cartItem.querySelector('.productName').textContent;
+                cartItems = cartItems.filter(item => item.name !== itemName);
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            }
+        }
+
+        //JAVASCRIPT FOR UPDATE QUANTITY IN CART FUNCTION REMAIN WHEN PAGE LOAD
+        function updateCartQuantity() {
+            cartQuantity = cartItems.length;
+            cartQuantityElement.textContent = cartQuantity;
+        }
+
+        //CALL OUT FUNCTION
+        updateCartQuantity();
+        initApp();
+
+        //JAVASCRIPT FUNCTION FOR CHECKOUT
+        function checkout() {
+        if (cartItems.length > 0) {
+            window.location.href = 'checkout.html';
+        } else {
+            alert('Cart is empty. Not able to checkout');
+        }
+    }
+    </script>
+</body>
+</html>

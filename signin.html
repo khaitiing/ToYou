@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assignment.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <title>Login & Sign Up Page</title>
+</head>
+
+<body>
+    <!-- Login & Sign Up Form -->
+    <div class="register">
+        <div class="container">
+            <div class="forms">
+                <!-- Login Form -->
+                <div class="form login">
+                    <span class="title">Login</span>
+
+                    <form action="home.html" class="loginForm">
+                        <div class="field email-field">
+                            <div class="input-field">
+                                <input type="email" class="loginEmail" placeholder="Enter your email">
+                                <img src="images/email.png">
+                            </div>
+                            <span class="error email-error">
+                                <img src="images/exclamation.png">
+                                <p class="error-text"></p>
+                            </span>
+                        </div>
+
+                        <div class="field confirm-password">
+                            <div class="input-field">
+                                <input type="password" class="password" placeholder="Enter your password">
+                                <img src="images/lock.png">
+                                <img src="images/eyeslash.png" class="showHidePw">
+                            </div>
+
+                            <span class="error password-error">
+                                <img src="images/exclamation.png">
+                                <p class="error-text"></p>
+                            </span>
+                        </div>
+
+                        <div class="checkbox-text">
+                            <div class="checkbox-content">
+                                <input type="checkbox" id="logCheck">
+                                <label for="logCheck" class="text">Remember Me</label>
+                            </div>
+                            <div class="forgotText">Forgot Password?</div>
+                        </div>
+
+                        <div class="input-field button">
+                            <input type="submit" value="Login">
+                        </div>
+                    </form>
+
+                    <div class="login-signup">
+                        <span class="text">Not a member?
+                            <a href="#" class="text signup-link">Sign Up Here</a>
+                        </span>
+                        <br>
+                        <span class="text">
+                            <a href="home.html" class="text backHome">Back to home without Login</a>
+                        </span>
+                    </div>
+                    
+                </div>
+
+                <!-- Sign Up Form -->
+                <div class="form signup">
+                    <span class="title">Sign Up</span>
+
+                    <form action="signin.html" class="signupForm">
+                        
+                        <div class="field username-field">
+                            <div class="input-field">
+                                <input type="text" class="username" placeholder="Enter username">
+                                <img src="images/user.png">
+                            </div>
+                            <span class="error username-error">
+                                <img src="images/exclamation.png">
+                                <p class="error-text">Please enter a username with at least a small letter and capital letter</p>
+                            </span>
+                        </div>
+
+                        <div class="field email-field">
+                            <div class="input-field">
+                                <input type="email" class="email" placeholder="Enter your email">
+                                <img src="images/email.png">
+                            </div>
+                            <span class="error email-error">
+                                <img src="images/exclamation.png">
+                                <p class="error-text">Please enter a valid email</p>
+                            </span>
+                        </div>
+
+                        <div class="field create-password">
+                            <div class="input-field">
+                                <input type="password" class="password" placeholder="Create a password">
+                                <img src="images/lock.png">
+                                <img src="images/eyeslash.png" class="showHidePw">
+                            </div>
+                            <span class="error password-error">
+                                <img src="images/exclamation.png">
+                                <p class="error-text">Please enter at least 8 character with number, symbol, small and capital letter</p>
+                            </span>
+                        </div>
+
+                        <div class="field confirm-password">
+                            <div class="input-field">
+                                <input type="password" class="password" placeholder="Confirm password">
+                                <img src="images/lock.png">
+                                <img src="images/eyeslash.png" class="showHidePw">
+                            </div>
+                            <span class="error cPassword-error">
+                                <img src="images/exclamation.png">
+                                <p class="error-text">Password does not match</p>
+                            </span>
+                        </div>
+
+                        <div class="checkbox-text">
+                            <div class="checkbox-content">
+                                <input type="checkbox" id="sigCheck">
+                                <label for="sigCheck" class="text">Remember Me</label>
+                            </div>
+                        </div>
+                        
+                        <div class="input-field button">
+                            <input type="submit" value="Sign Up">
+                        </div>
+                    </form>
+
+                    <div class="login-signup">
+                        <span class="text">Already a member?
+                            <a href="#" class="text login-link">Login here</a>
+                        </span>
+                        <br>
+                        <span class="text">
+                            <a href="home.html" class="text backHome">Back to home without Sign Up</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <footer>
+        <p class="footercopyright">ToYou &copy; 2023 - All Rights Reserved</p>
+        <p class="creationDate">Created On: 1st December 2023</p>
+        <p class="updateDate">Last Updated On: 10th December 2023</p>
+        <p class="datacollectionDate">Data Collection Date: 1st December 2023</p>
+    </footer>
+
+    <!-- Javascript Codes -->
+    <script>
+        const container = document.querySelector(".container"),
+            pwShowHide = document.querySelectorAll(".showHidePw"),
+            pwFields = document.querySelectorAll(".password"),
+            signUp = document.querySelector(".signup-link"),
+            login = document.querySelector(".login-link");
+
+            //Javascript code to show/hide password and change icon
+            pwShowHide.forEach(eyeIcon => {
+                eyeIcon.addEventListener("click", () => {
+                    const parentField = eyeIcon.closest(".input-field");
+                    const pwField = parentField.querySelector(".password");
+
+                    if (pwField.type === "password") {
+                        pwField.type = "text";
+                        eyeIcon.src = "images/eye.png";
+                    } else {
+                        pwField.type = "password";
+                        eyeIcon.src = "images/eyeslash.png";
+                    }
+                });
+            });
+
+            //Javascript code to appear signup and login form
+            signUp.addEventListener("click", () => {
+                container.classList.add("active");
+            });
+
+            login.addEventListener("click", () => {
+                container.classList.remove("active");
+            });
+        
+        //Javascript Validation for Login Form
+        const loginForm = document.querySelector(".loginForm"),
+            eField = loginForm.querySelector(".email-field"),
+            eInput = eField.querySelector(".loginEmail"),
+            pField = loginForm.querySelector(".confirm-password"),
+            pInput = pField.querySelector(".password");
+
+            function checkloginEmail() {
+                const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+                if (eInput.value.trim() === "") {
+                    eField.classList.add("invalid");
+                    eField.querySelector(".error-text").textContent = "Email can't be blank";
+                } else if (!eInput.value.match(emailPattern)) {
+                    eField.classList.add("invalid");
+                    eField.querySelector(".error-text").textContent = "Please enter a valid email";
+                } else {
+                    eField.classList.remove("invalid");
+                }
+            }
+
+            function checkloginPass() {
+            const passPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
+            if (pInput.value.trim() === "") {
+                pField.classList.add("invalid");
+                pField.querySelector(".error-text").textContent = "Password can't be blank";
+            } else if (!pInput.value.match(passPattern)) {
+                    pField.classList.add("invalid");
+                    pField.querySelector(".error-text").textContent = "Invalid Password";
+            } else {
+                pField.classList.remove("invalid");
+            }
+        }
+
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault(); //preventing form submitting
+            checkloginEmail();
+            checkloginPass();
+
+            if (
+                !eField.classList.contains("invalid") &&
+                !pField.classList.contains("invalid")
+                
+            ) {
+                location.href = loginForm.getAttribute("action");
+            }
+        });
+
+        //Calling function on key up
+        eInput.addEventListener("keyup", checkloginEmail);
+        pInput.addEventListener("keyup", checkloginPass);
+
+        //Javascript Sign Up Form Validation
+        const signupForm = document.querySelector(".signupForm"),
+            usernameField = signupForm.querySelector(".username-field"),
+            usernameInput = usernameField.querySelector(".username"),
+            emailField = signupForm.querySelector(".email-field"),
+            emailInput = emailField.querySelector(".email"),
+            passField = signupForm.querySelector(".create-password"),
+            passInput = passField.querySelector(".password"),
+            cPassField = signupForm.querySelector(".confirm-password"),
+            cPassInput = cPassField.querySelector(".password");
+
+        //Username Validation
+        function checkUsername(){
+            const usernamePattern = /^(?=.*[a-z])(?=.*[A-Z])/;
+            if(!usernameInput.value.match(usernamePattern)){
+                return usernameField.classList.add("invalid");
+            }
+            usernameField.classList.remove("invalid");
+        }
+        
+        //Email Validation
+        function checkEmail() {
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!emailInput.value.match(emailPattern)) {
+                return emailField.classList.add("invalid");
+            }
+            emailField.classList.remove("invalid");
+         }
+
+         //Password Validation
+         function createPass(){
+            const passPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
+            if(!passInput.value.match(passPattern)){
+                return passField.classList.add("invalid");
+            }
+            passField.classList.remove("invalid");
+         }
+
+         //Confirm Password Validation
+        function confirmPass() {
+            if (passInput.value !== cPassInput.value || cPassInput.value === "") {
+                return cPassField.classList.add("invalid");
+            }
+            cPassField.classList.remove("invalid");
+        }
+
+        //Calling function on form submit
+        signupForm.addEventListener("submit", (e) => {
+            e.preventDefault(); //preventing form submitting
+            checkUsername();
+            checkEmail();
+            createPass();
+            confirmPass();
+
+            if (
+                !usernameField.classList.contains("invalid") &&
+                !emailField.classList.contains("invalid") &&
+                !passField.classList.contains("invalid") &&
+                !cPassField.classList.contains("invalid")
+            ) {
+                //Display success message
+                alert("Sign Up Successfully. You are now a member, proceed to login.");
+
+                //Redirect to the login page
+                location.href = "signin.html";
+            }
+        });
+
+            //calling function on key up
+            usernameInput.addEventListener("keyup", checkUsername);
+            emailInput.addEventListener("keyup", checkEmail);
+            passInput.addEventListener("keyup", createPass);
+            cPassInput.addEventListener("keyup", confirmPass);
+    </script>
+</body>
+</html>
